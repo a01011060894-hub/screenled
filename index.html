@@ -1,0 +1,806 @@
+<!doctype html>  
+<html lang="ar" dir="rtl">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>متجر شاشات LED | النظام الهندسي</title>  
+    
+  <!-- Tailwind CSS -->  
+  <script src="https://cdn.tailwindcss.com"></script>  
+    
+  <!-- Lucide Icons -->  
+  <script src="https://unpkg.com/lucide@latest"></script>  
+    
+  <!-- Google Fonts: Tajawal -->  
+  <link rel="preconnect" href="https://fonts.googleapis.com">  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">  
+    
+  <!-- Swiper.js CSS -->  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />  
+  
+  <script>  
+    tailwind.config = {  
+      theme: {  
+        extend: {  
+          fontFamily: { sans: ['Tajawal', 'sans-serif'] },  
+          colors: {  
+            brand: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 900: '#064e3b', 950: '#022c22' }  
+          },  
+          animation: { 'fade-in-up': 'fadeInUp 0.6s ease-out forwards' },  
+          keyframes: {  
+            fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }  
+          }  
+        }  
+      }  
+    }  
+  </script>  
+  
+  <style>  
+    body { background-color: #f8fafc; overflow-x: hidden; scroll-behavior: smooth; }  
+    ::-webkit-scrollbar { width: 8px; }  
+    ::-webkit-scrollbar-track { background: #f1f1f1; }  
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }  
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }  
+      
+    .led-glow-active {  
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);  
+      border-color: #22c55e !important;  
+      background: linear-gradient(to bottom right, #ffffff, #f0fdf4);  
+    }  
+  
+    input[type="number"]::-webkit-inner-spin-button,   
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }  
+  
+    .swiper-button-next, .swiper-button-prev { color: white !important; background: rgba(0,0,0,0.4); width: 44px !important; height: 44px !important; border-radius: 50%; backdrop-filter: blur(4px); transition: all 0.3s; }  
+    .swiper-button-next:hover, .swiper-button-prev:hover { background: rgba(34, 197, 94, 0.9); transform: scale(1.1); }  
+    .swiper-button-next::after, .swiper-button-prev::after { font-size: 18px !important; font-weight: bold; }  
+    .swiper-pagination-bullet { background: white !important; opacity: 0.5; }  
+    .swiper-pagination-bullet-active { opacity: 1; background: #22c55e !important; width: 24px; border-radius: 4px; transition: width 0.3s ease; }  
+  </style>  
+</head>  
+<body class="text-slate-800 antialiased selection:bg-brand-500 selection:text-white">  
+  
+  <!-- Toast Notification Container -->  
+  <div id="toast-container" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 pointer-events-none w-11/12 sm:w-auto min-w-[300px]"></div>  
+  
+  <!-- Hero Section -->  
+  <header class="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-brand-950">  
+    <div class="absolute inset-0 z-0">  
+      <img src="https://images.unsplash.com/photo-1540317580384-e5d43867caa6?q=80&w=2070&auto=format&fit=crop" alt="خلفية شاشات ليد" class="w-full h-full object-cover opacity-40 mix-blend-overlay">  
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/80 to-transparent"></div>  
+    </div>  
+  
+    <div class="relative z-10 text-center px-6 max-w-4xl animate-fade-in-up">  
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-100 text-sm font-medium mb-6">  
+        <i data-lucide="cpu" class="w-4 h-4"></i>  
+        <span>أول نظام تخطيط هندسي مؤتمت</span>  
+      </div>  
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 drop-shadow-lg">  
+        تصميم <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-teal-300">بلا أخطاء</span>  
+      </h1>  
+      <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">  
+        أدخل أبعاد المساحة المتاحة لديك، وسيقوم نظامنا الهندسي بتقريبها للمقاس الفعلي، واختيار أجهزة التشغيل، وحساب عدد المكونات بدقة متناهية.  
+      </p>  
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">  
+        <a href="#indoor-section" class="px-8 py-4 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-lg transition-all shadow-[0_0_20px_rgba(34,197,94,0.4)] flex items-center gap-2">  
+          <i data-lucide="monitor-play" class="w-5 h-5"></i>  
+          تصفح الشاشات الداخلية  
+        </a>  
+        <a href="#outdoor-section" class="px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold text-lg transition-all flex items-center gap-2">  
+          <i data-lucide="sun" class="w-5 h-5"></i>  
+          تصفح الشاشات الخارجية  
+        </a>  
+      </div>  
+    </div>  
+  </header>  
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">  
+      
+    <!-- Indoor Section -->  
+    <section id="indoor-section" class="animate-fade-in-up scroll-mt-24">  
+      <div class="flex items-center gap-3 mb-6">  
+        <div class="p-3 rounded-xl bg-brand-100 text-brand-600">  
+          <i data-lucide="monitor-play" class="w-6 h-6"></i>  
+        </div>  
+        <div>  
+          <h2 class="text-3xl font-bold text-slate-900">الشاشات الداخلية (Indoor)</h2>  
+          <p class="text-slate-500 mt-1">دقة عرض مثالية للمسافات القريبة.</p>  
+        </div>  
+      </div>  
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="indoor-buttons"></div>  
+    </section>  
+  
+    <!-- Outdoor Section -->  
+    <section id="outdoor-section" class="animate-fade-in-up pt-10 border-t border-slate-100 scroll-mt-24">  
+      <div class="flex items-center gap-3 mb-6">  
+        <div class="p-3 rounded-xl bg-orange-100 text-orange-600">  
+          <i data-lucide="sun" class="w-6 h-6"></i>  
+        </div>  
+        <div>  
+          <h2 class="text-3xl font-bold text-slate-900">الشاشات الخارجية (Outdoor)</h2>  
+          <p class="text-slate-500 mt-1">مقاومة للعوامل الجوية مع سطوع عالٍ يبرز في النهار.</p>  
+        </div>  
+      </div>  
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="outdoor-buttons"></div>  
+    </section>  
+  
+    <!-- Engineering Configurator Section -->  
+    <div id="calculator-section" class="grid grid-cols-1 lg:grid-cols-12 gap-8 scroll-mt-24 pt-10 border-t border-slate-100">  
+        
+      <!-- Calculator Panel -->  
+      <section class="lg:col-span-7 bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden">  
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-50 rounded-full blur-3xl -z-10 -translate-y-1/2 translate-x-1/2"></div>  
+          
+        <div class="flex items-center gap-3 mb-8">  
+          <div class="p-3 rounded-xl bg-blue-50 text-blue-600">  
+            <i data-lucide="cpu" class="w-6 h-6"></i>  
+          </div>  
+          <h2 class="text-2xl font-bold text-slate-900">المخطط الهندسي التلقائي</h2>  
+        </div>  
+  
+        <div class="bg-slate-50 rounded-2xl p-5 mb-8 border border-slate-100 flex items-start gap-4 transition-all duration-300" id="calc-info-box">  
+          <div class="mt-1 text-brand-500" id="calc-info-icon"><i data-lucide="info" class="w-5 h-5"></i></div>  
+          <div>  
+            <p id="selected-product-name" class="font-bold text-slate-800 text-lg">الرجاء اختيار نوع الشاشة أولاً من الأعلى</p>  
+            <p id="selected-product-price" class="text-sm text-slate-500 mt-1">أدخل المساحة المتاحة لديك وسنقوم بتقريبها للمقاس الفعلي</p>  
+          </div>  
+        </div>  
+  
+        <!-- Inputs -->  
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">  
+          <div class="relative group">  
+            <label class="text-sm font-semibold text-slate-700 block mb-2">العرض المتاح أفقياً (متر)</label>  
+            <div class="relative">  
+              <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400 group-focus-within:text-brand-500 transition-colors">  
+                <i data-lucide="arrow-left-right" class="w-5 h-5"></i>  
+              </div>  
+              <input id="calc-width" type="number" min="0" step="0.01" placeholder="مثال: 5.0" class="w-full bg-white border-2 border-slate-200 rounded-2xl pr-12 pl-4 py-4 text-lg font-bold text-slate-900 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all shadow-sm">  
+            </div>  
+          </div>  
+          <div class="relative group">  
+            <label class="text-sm font-semibold text-slate-700 block mb-2">الارتفاع المتاح رأسياً (متر)</label>  
+            <div class="relative">  
+              <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400 group-focus-within:text-brand-500 transition-colors">  
+                <i data-lucide="arrow-up-down" class="w-5 h-5"></i>  
+              </div>  
+              <input id="calc-height" type="number" min="0" step="0.01" placeholder="مثال: 3.0" class="w-full bg-white border-2 border-slate-200 rounded-2xl pr-12 pl-4 py-4 text-lg font-bold text-slate-900 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition-all shadow-sm">  
+            </div>  
+          </div>  
+        </div>  
+  
+        <!-- System Alerts (If requested size is too small) -->  
+        <div id="calc-warning" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm mb-6 flex items-center gap-2">  
+          <i data-lucide="alert-triangle" class="w-4 h-4"></i>  
+          <span id="calc-warning-text">المقاس المدخل أصغر من وحدة واحدة، يرجى زيادة المقاس.</span>  
+        </div>  
+  
+        <!-- The Result Box -->
+        <div class="bg-brand-900 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden transition-all duration-300" id="result-box">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+
+          <!-- Core Result -->
+          <div class="relative z-10 flex flex-col gap-4 mb-5">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div>
+                <p class="text-brand-200 text-xs font-medium mb-1 uppercase tracking-wider">المقاس الفعلي للتنفيذ</p>
+                <p class="text-3xl font-bold font-sans" dir="ltr" id="calc-actual-size">0.00 × 0.00</p>
+                <p class="text-sm mt-1 text-slate-300">مساحة: <span id="calc-area">0.00</span> م²</p>
+              </div>
+              <div class="bg-black/20 p-4 rounded-xl border border-white/10 w-full md:w-auto min-w-[200px]">
+                <div class="flex justify-between gap-6 text-sm mb-2">
+                   <span class="text-slate-300">سعر الشاشة:</span>
+                   <span class="font-bold"><span id="calc-screen-cost">0</span> ر.س</span>
+                </div>
+                <div class="flex justify-between gap-6 text-sm mb-3">
+                   <span class="text-slate-300">سعر المعالج:</span>
+                   <span class="font-bold"><span id="calc-ctrl-sale">0</span> ر.س</span>
+                </div>
+                <div class="flex justify-between gap-6 text-xl border-t border-white/10 pt-3">
+                   <span class="text-brand-200">الإجمالي:</span>
+                   <span class="font-bold text-brand-400"><span id="calc-cost">0</span> ر.س</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Controller Report -->
+          <div class="relative z-10 bg-blue-900/40 border border-blue-500/30 rounded-2xl p-4 mb-4">
+             <div class="flex items-center gap-2 mb-4">
+                <i data-lucide="cpu" class="w-5 h-5 text-blue-400"></i>
+                <h4 class="font-bold text-blue-100">تقرير المعالج (Controller)</h4>
+             </div>
+             <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-3 text-sm">
+                <div>
+                  <p class="text-blue-300/70 text-xs mb-1">الموديل الموصى به</p>
+                  <p class="font-bold text-white" id="calc-controller">غير محدد</p>
+                </div>
+                <div>
+                  <p class="text-blue-300/70 text-xs mb-1">منافذ RJ45 الإجمالية</p>
+                  <p class="font-bold text-white" id="calc-ctrl-ports">0</p>
+                </div>
+                <div>
+                  <p class="text-blue-300/70 text-xs mb-1">المنافذ المتبقية</p>
+                  <p class="font-bold text-brand-400" id="calc-ctrl-rem-ports">0</p>
+                </div>
+                <div>
+                  <p class="text-blue-300/70 text-xs mb-1">السعة المتبقية</p>
+                  <p class="font-bold text-brand-400" id="calc-ctrl-rem-pixels" dir="ltr">0 Pixels</p>
+                </div>
+                <div>
+                  <p class="text-blue-300/70 text-xs mb-1">سعر الشراء</p>
+                  <p class="font-bold text-yellow-400"><span id="calc-ctrl-buy">0</span> ر.س</p>
+                </div>
+                <div>
+                  <p class="text-blue-300/70 text-xs mb-1">سعر البيع</p>
+                  <p class="font-bold text-brand-400"><span id="calc-ctrl-sale-2">0</span> ر.س</p>
+                </div>
+             </div>
+          </div>
+
+          <!-- Deep Engineering Data Grid -->
+          <div class="relative z-10 grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
+            <!-- Pixels -->
+            <div class="bg-black/20 rounded-xl p-3 text-center">
+              <i data-lucide="scan" class="w-4 h-4 text-brand-300 mx-auto mb-1"></i>
+              <p class="text-[10px] text-brand-200 mb-0.5">الدقة الفعلية</p>
+              <p id="calc-pixels" class="font-bold text-sm tracking-wider" dir="ltr">0 × 0</p>
+            </div>
+            <!-- Units -->
+            <div class="bg-black/20 rounded-xl p-3 text-center">
+              <i data-lucide="layout-grid" class="w-4 h-4 text-blue-300 mx-auto mb-1"></i>
+              <p class="text-[10px] text-brand-200 mb-0.5" id="unit-label">عدد الوحدات</p>
+              <p id="calc-units" class="font-bold text-sm" dir="ltr">0 × 0</p>
+            </div>
+          </div>
+
+          <button id="add-to-cart-btn" onclick="addOrUpdateCart()" class="w-full mt-6 px-6 py-4 bg-white text-brand-900 hover:bg-brand-50 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg">
+            <i data-lucide="plus-circle" class="w-5 h-5"></i>
+            إعتماد التصميم وإضافته للطلب
+          </button>
+        </div>
+      </section>  
+  
+      <!-- Cart Panel -->  
+      <aside class="lg:col-span-5 bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col h-full">  
+        <div class="flex items-center justify-between mb-6">  
+          <div class="flex items-center gap-3">  
+            <div class="p-3 rounded-xl bg-slate-100 text-slate-700">  
+              <i data-lucide="shopping-cart" class="w-6 h-6"></i>  
+            </div>  
+            <h2 class="text-2xl font-bold text-slate-900">المقايسات المطلوبة</h2>  
+          </div>  
+          <span id="cart-badge" class="bg-brand-100 text-brand-700 text-xs font-bold px-3 py-1 rounded-full">0 مخططات</span>  
+        </div>  
+  
+        <div class="flex-1 overflow-y-auto max-h-[500px] pr-2 mb-6">  
+          <div id="cart-empty" class="h-full flex flex-col items-center justify-center text-slate-400 space-y-4 py-12">  
+            <i data-lucide="package-open" class="w-16 h-16 opacity-50"></i>  
+            <p class="text-sm font-medium">لم يتم اعتماد أي مخطط هندسي بعد</p>  
+          </div>  
+          <div id="cart-items" class="space-y-4 hidden"></div>  
+        </div>  
+  
+        <div class="border-t border-slate-100 pt-6 mt-auto">  
+          <div class="space-y-3 mb-6">  
+            <div class="flex justify-between text-slate-500">  
+              <span>إجمالي المساحة المعتمدة</span>  
+              <span class="font-bold text-slate-800"><span id="cart-total-area">0</span> م²</span>  
+            </div>  
+            <div class="flex justify-between text-lg">  
+              <span class="font-bold text-slate-900">الإجمالي النهائي للتركيب</span>  
+              <span class="font-bold text-brand-600"><span id="cart-total-price">0</span> ريال</span>  
+            </div>  
+          </div>  
+          <button onclick="sendWhatsApp()" class="w-full py-4 rounded-2xl font-bold bg-[#25D366] hover:bg-[#1EBE5C] text-white transition-all shadow-lg shadow-[#25D366]/30 flex items-center justify-center gap-2 group">  
+            <i data-lucide="send" class="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>  
+            إرسال المخطط لفريق المبيعات  
+          </button>  
+        </div>  
+      </aside>  
+  
+    </div>  
+  </main>  
+  
+  <!-- Footer -->  
+  <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm border-t border-slate-800">  
+    <p>© 2024 متجر شاشات LED - الأفق الجديد. جميع الحقوق محفوظة.</p>  
+  </footer>  
+  
+  <script>  
+    lucide.createIcons();  
+  
+    // --- System Engineering Rules ---  
+      
+    // Controllers based on Colorlight Specifications
+    const controllers = [
+      { name: "A35", ports: 1, maxPixels: 650000, maxWidth: 4096, maxHeight: 3840, buyPrice: 927, salePrice: 1391 },
+      { name: "A60", ports: 2, maxPixels: 1300000, maxWidth: 4096, maxHeight: 2560, buyPrice: 1125, salePrice: 1688 },
+      { name: "A100", ports: 2, maxPixels: 1300000, maxWidth: 4096, maxHeight: 2560, buyPrice: 1516, salePrice: 2274 },
+      { name: "A200", ports: 4, maxPixels: 2300000, maxWidth: 4096, maxHeight: 2560, buyPrice: 1905, salePrice: 2858 },
+      { name: "A500", ports: 8, maxPixels: 5200000, maxWidth: 7680, maxHeight: 4096, buyPrice: 3900, salePrice: 5850 },
+      { name: "A800", ports: 16, maxPixels: 8800000, maxWidth: 8192, maxHeight: 4320, buyPrice: 6500, salePrice: 9750 }
+    ];
+  
+    // Products Data with Exact Dimensions and Step (Rounding multiples)  
+    // وحدة القياس: المتر. stepW = العرض, stepH = الارتفاع  
+    const indoorProducts = [  
+      { id: 'in1', name: 'P2.5 Indoor SMD', pitch: 2.50, price: 3035, originalPrice: 3500, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'اقتصادي وعملي، ممتاز للقاعات والمتاجر الكبيرة.' },  
+      { id: 'in2', name: 'P1.8 Indoor SMD', pitch: 1.86, price: 3674, originalPrice: 4200, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'دقة عالية، مثالي لغرف الاجتماعات ورؤية واضحة عن قرب.' },  
+      { id: 'in3', name: 'P1.8 Indoor COB', pitch: 1.86, price: 4605, originalPrice: 5300, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'تقنية COB تريح العين بتباين مبهر، ممتاز للاستوديوهات.' },  
+      { id: 'in4', name: 'P1.5 Indoor COB', pitch: 1.53, price: 5755, originalPrice: 6500, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'دقة فائقة لغرف التحكم والمعارض، تفاصيل لا مثيل لها.' },  
+      { id: 'in5', name: 'P1.2 Indoor COB', pitch: 1.25, price: 8170, originalPrice: 9200, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'أعلى دقة متاحة للسينما المنزلية الفاخرة والشاشات المركزية.' },  
+    ];  
+      
+    const outdoorProducts = [  
+      { id: 'out1', name: 'P5 Outdoor KGKD', pitch: 5.00, price: 3494, originalPrice: 4000, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'خيار اقتصادي ممتاز للوحات الإعلانية الكبيرة بالشوارع.' },  
+      { id: 'out2', name: 'P4 Outdoor KDKD', pitch: 4.00, price: 3826, originalPrice: 4500, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'دقة رائعة للواجهات التجارية، واضحة للمارة والسيارات.' },  
+      { id: 'out3', name: 'BTOS SC4 Outdoor', pitch: 4.00, price: 3857, originalPrice: 4600, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'ألوان استثنائية وجذابة، مناسب لإعلانات المولات والماركات.' },  
+      { id: 'out4', name: 'BTOS SC2.5 Outdoor', pitch: 2.50, price: 5035, originalPrice: 5800, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'دقة عالية جداً للواجهات القريبة من المشاة والمقاهي.' },  
+      { id: 'out5', name: 'APEXPRO X6 Outdoor', pitch: 6.00, price: 5551, originalPrice: 6300, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'للشاشات العملاقة على الطرق السريعة بمقاومة فائقة للطقس.' },  
+      { id: 'out6', name: 'APEX-X4 Outdoor', pitch: 4.00, price: 6026, originalPrice: 6900, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'سطوع عالي وتوفير طاقة، مثالي لشاشات الملاعب والفعاليات.' },  
+      { id: 'out7', name: 'P2.5 Outdoor KGKD', pitch: 2.50, price: 6567, originalPrice: 7500, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'رؤية مذهلة عن قرب للمطاعم ومسارات الطلبات Drive-thru.' },  
+      { id: 'out8', name: 'APEXPRO X4 Outdoor', pitch: 4.00, price: 7019, originalPrice: 8000, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'أداء احترافي شاق، مصمم للعمل المتواصل 24/7 دون توقف.' },  
+    ];  
+  
+    let cart = [];  
+    let selectedProduct = null;  
+    let editingIndex = -1;  
+    let currentCalculation = null; // Holds all engineered specs  
+  
+    function loadCart() {  
+      const savedCart = localStorage.getItem('ledStoreCart');  
+      if (savedCart) { try { cart = JSON.parse(savedCart); renderCart(); } catch(e) {} }  
+    }  
+    function saveCart() { localStorage.setItem('ledStoreCart', JSON.stringify(cart)); }  
+  
+    function showToast(message, type = 'success') {  
+      const container = document.getElementById('toast-container');  
+      const toast = document.createElement('div');  
+      const bgColor = type === 'success' ? 'bg-slate-900' : 'bg-red-600';  
+      const icon = type === 'success' ? 'check-circle' : 'alert-circle';  
+      const textColor = type === 'success' ? 'text-brand-400' : 'text-white';  
+  
+      toast.className = `flex items-center gap-3 ${bgColor} text-white px-6 py-4 rounded-2xl shadow-2xl transform transition-all duration-300 translate-y-[-100%] opacity-0`;  
+      toast.innerHTML = `<i data-lucide="${icon}" class="w-5 h-5 ${textColor}"></i><span class="font-bold text-sm">${message}</span>`;  
+        
+      container.appendChild(toast);  
+      lucide.createIcons();  
+      requestAnimationFrame(() => toast.classList.remove('translate-y-[-100%]', 'opacity-0'));  
+      setTimeout(() => {  
+        toast.classList.add('translate-y-[-100%]', 'opacity-0');  
+        setTimeout(() => toast.remove(), 300);  
+      }, 3500);  
+    }  
+  
+    function renderProducts(products, containerId) {  
+      const container = document.getElementById(containerId);  
+      products.forEach(p => {  
+        const card = document.createElement('div');  
+        const discountPercentage = Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100);  
+          
+        card.className = 'product-card group relative bg-white rounded-xl p-3 sm:p-4 border-2 border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden';  
+        card.dataset.id = p.id;  
+          
+        card.innerHTML = `  
+          <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-brand-50 to-transparent rounded-bl-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>  
+          
+          <div class="flex justify-between items-start gap-2">  
+            <div class="flex-1">  
+              <h3 class="font-bold text-slate-800 text-sm sm:text-base leading-tight mb-1">${p.name}</h3>  
+              <div class="flex items-center gap-2 mb-1.5">  
+                <span class="text-[10px] text-slate-400 line-through">${p.originalPrice.toLocaleString()} ر.س</span>  
+                <span class="bg-brand-50 text-brand-600 text-[9px] font-bold px-1.5 py-0.5 rounded">وفر ${discountPercentage}%</span>  
+              </div>  
+              <p class="text-[10px] text-slate-500 leading-snug flex items-start gap-1">
+                <i data-lucide="lightbulb" class="w-3 h-3 text-amber-500 shrink-0 mt-[1px]"></i>
+                <span class="line-clamp-2">${p.hint}</span>
+              </p>
+            </div>  
+            <div class="w-8 h-8 shrink-0 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-brand-500 group-hover:text-white transition-colors check-icon border border-slate-100 mt-1">  
+              <i data-lucide="plus" class="w-4 h-4"></i>  
+            </div>  
+          </div>  
+
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100/80">  
+            <div class="flex items-center gap-1 text-[10px] text-slate-500 bg-slate-50 px-2 py-1 rounded-md">  
+              <i data-lucide="layers" class="w-3 h-3"></i> ${p.stepW * 100}×${p.stepH * 100} سم
+            </div>  
+            <div class="font-black text-brand-600 text-base md:text-lg">
+              ${p.price.toLocaleString()} <span class="text-[9px] text-slate-400 font-normal">ر.س/م²</span>
+            </div>  
+          </div>  
+        `;  
+        card.addEventListener('click', () => selectProduct(p, card));  
+        container.appendChild(card);  
+      });  
+      lucide.createIcons();  
+    }  
+  
+    const widthInput = document.getElementById('calc-width');  
+    const heightInput = document.getElementById('calc-height');  
+  
+    function selectProduct(product, selectedCard) {  
+      document.querySelectorAll('.product-card').forEach(card => {  
+        card.classList.remove('led-glow-active');  
+        const iconContainer = card.querySelector('.check-icon');  
+        iconContainer.classList.remove('bg-brand-500', 'text-white');  
+        iconContainer.classList.add('bg-slate-50', 'text-slate-400');  
+        iconContainer.innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i>';  
+      });  
+  
+      selectedCard.classList.add('led-glow-active');  
+      const activeIcon = selectedCard.querySelector('.check-icon');  
+      activeIcon.classList.remove('bg-slate-50', 'text-slate-400');  
+      activeIcon.classList.add('bg-brand-500', 'text-white');  
+      activeIcon.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i>';  
+      lucide.createIcons();  
+  
+      selectedProduct = product;  
+      document.getElementById('selected-product-name').innerHTML = `<span class="text-brand-600 font-black">${product.name}</span>`;  
+      document.getElementById('selected-product-price').textContent = `تتكون من (${product.unitName}) بمقاس ${product.stepW * 100} × ${product.stepH * 100} سم`;  
+        
+      const infoBox = document.getElementById('calc-info-box');  
+      infoBox.classList.add('bg-brand-50', 'border-brand-200');  
+      document.getElementById('calc-info-icon').classList.replace('text-brand-500', 'text-brand-600');  
+        
+      document.getElementById('unit-label').textContent = `عدد الـ ${product.unitName}ات`;  
+  
+      calcUpdate();  
+      document.getElementById('calculator-section').scrollIntoView({ behavior: 'smooth', block: 'center' });  
+      setTimeout(() => widthInput.focus(), 500);  
+    }  
+  
+    function engineeringCalculator(reqW, reqH, product) {
+      // 1. حساب المقاس الفعلي بتقريب للأسفل (Floor) بناءً على مقاس الكابينة
+      const cols = Math.floor(reqW / product.stepW);
+      const rows = Math.floor(reqH / product.stepH);
+
+      const actualW = parseFloat((cols * product.stepW).toFixed(2));
+      const actualH = parseFloat((rows * product.stepH).toFixed(3));
+      const actualArea = parseFloat((actualW * actualH).toFixed(2));
+      const screenCost = Math.round(actualArea * product.price);
+
+      if (cols === 0 || rows === 0) return { isValid: false };
+
+      // 2. حساب عدد البكسلات الفعلي بدقة علمية: المقاس بالمتر × (1000 ÷ Pitch)
+      const wPixels = Math.round(actualW * (1000 / product.pitch));
+      const hPixels = Math.round(actualH * (1000 / product.pitch));
+      const totalPixels = wPixels * hPixels;
+
+      // 3. خوارزمية اختيار المعالج بناءً على الشروط الثلاثة
+      let recommendedController = null;
+      for (let ctrl of controllers) {
+        if (wPixels <= ctrl.maxWidth && hPixels <= ctrl.maxHeight && totalPixels <= ctrl.maxPixels) {
+          recommendedController = ctrl;
+          break; // نختار أول/أصغر جهاز يحقق جميع الشروط
+        }
+      }
+
+      let ctrlName = 'يحتاج جهاز مخصص (تجاوز A800)';
+      let ctrlPorts = 0;
+      let ctrlBuyPrice = 0;
+      let ctrlSalePrice = 0;
+      let remainingPixels = 0;
+      let remainingPorts = 0;
+
+      if (recommendedController) {
+          ctrlName = 'Colorlight ' + recommendedController.name;
+          ctrlPorts = recommendedController.ports;
+          ctrlBuyPrice = recommendedController.buyPrice;
+          ctrlSalePrice = recommendedController.salePrice;
+          remainingPixels = recommendedController.maxPixels - totalPixels;
+          // حساب المنافذ المستخدمة: منفذ لكل 650 ألف بكسل
+          let usedPorts = Math.ceil(totalPixels / 650000); 
+          remainingPorts = ctrlPorts - usedPorts;
+          if (remainingPorts < 0) remainingPorts = 0;
+      }
+
+      const totalCost = screenCost + ctrlSalePrice;
+
+      // 4. الحسابات التكميلية (كابلات / باور) تقريبياً للفائدة
+      let powerSupplies = 0;
+      if (product.unitName === 'موديول') {
+         powerSupplies = Math.ceil((cols * rows) / 4); // نفترض باور لكل 4 موديولات
+      } else {
+         powerSupplies = Math.ceil((cols * rows) * 2); // نفترض 2 باور داخل كل كابينة
+      }
+
+      return {
+        isValid: true,
+        actualW, actualH, actualArea, screenCost, totalCost,
+        cols, rows, totalUnits: cols * rows,
+        wPixels, hPixels, totalPixels,
+        ctrlName, ctrlPorts, ctrlBuyPrice, ctrlSalePrice, remainingPixels, remainingPorts,
+        powerSupplies
+      };
+    }
+
+    function resetCalcUI() {
+        document.getElementById('calc-actual-size').textContent = '0.00 × 0.00';
+        document.getElementById('calc-area').textContent = '0.00';
+        document.getElementById('calc-screen-cost').textContent = '0';
+        document.getElementById('calc-ctrl-sale').textContent = '0';
+        document.getElementById('calc-cost').textContent = '0';
+        document.getElementById('calc-controller').textContent = 'غير محدد';
+        document.getElementById('calc-ctrl-ports').textContent = '0';
+        document.getElementById('calc-ctrl-rem-ports').textContent = '0';
+        document.getElementById('calc-ctrl-rem-pixels').textContent = '0 Pixels';
+        document.getElementById('calc-ctrl-buy').textContent = '0';
+        document.getElementById('calc-ctrl-sale-2').textContent = '0';
+        document.getElementById('calc-pixels').textContent = '0 × 0';
+        document.getElementById('calc-units').textContent = '0 × 0';
+    }
+
+    function calcUpdate() {
+      const w = parseFloat(widthInput.value) || 0;
+      const h = parseFloat(heightInput.value) || 0;
+
+      const warningEl = document.getElementById('calc-warning');
+
+      if (selectedProduct && w > 0 && h > 0) {
+        currentCalculation = engineeringCalculator(w, h, selectedProduct);
+
+        if (!currentCalculation.isValid) {
+          warningEl.classList.remove('hidden');
+          resetCalcUI();
+          return;
+        }
+
+        warningEl.classList.add('hidden');
+        document.getElementById('calc-actual-size').textContent = `${currentCalculation.actualW}m × ${currentCalculation.actualH}m`;
+        document.getElementById('calc-area').textContent = currentCalculation.actualArea;
+        
+        document.getElementById('calc-screen-cost').textContent = currentCalculation.screenCost.toLocaleString();
+        document.getElementById('calc-ctrl-sale').textContent = currentCalculation.ctrlSalePrice.toLocaleString();
+        document.getElementById('calc-cost').textContent = currentCalculation.totalCost.toLocaleString();
+
+        document.getElementById('calc-controller').textContent = currentCalculation.ctrlName;
+        document.getElementById('calc-ctrl-ports').textContent = currentCalculation.ctrlPorts;
+        document.getElementById('calc-ctrl-rem-ports').textContent = currentCalculation.remainingPorts;
+        document.getElementById('calc-ctrl-rem-pixels').textContent = currentCalculation.remainingPixels.toLocaleString() + ' Pixels';
+        document.getElementById('calc-ctrl-buy').textContent = currentCalculation.ctrlBuyPrice.toLocaleString();
+        document.getElementById('calc-ctrl-sale-2').textContent = currentCalculation.ctrlSalePrice.toLocaleString();
+
+        document.getElementById('calc-pixels').textContent = `${currentCalculation.wPixels.toLocaleString()} × ${currentCalculation.hPixels.toLocaleString()}`;
+        document.getElementById('calc-units').textContent = `${currentCalculation.cols} × ${currentCalculation.rows} (${currentCalculation.totalUnits})`;
+
+      } else {
+        warningEl.classList.add('hidden');
+        resetCalcUI();
+        currentCalculation = null;
+      }
+    }
+  
+    widthInput.addEventListener('input', calcUpdate);  
+    heightInput.addEventListener('input', calcUpdate);  
+  
+    function addOrUpdateCart() {
+      if (!selectedProduct) return showToast('يرجى اختيار نوع الشاشة أولاً من الكتالوج', 'error');
+      if (!currentCalculation || !currentCalculation.isValid) return showToast('المقاس المدخل غير صالح أو صغير جداً', 'error');
+
+      const newItem = {
+        id: Date.now(),
+        name: selectedProduct.name,
+        unitName: selectedProduct.unitName,
+        price: selectedProduct.price,
+        reqW: parseFloat(widthInput.value),
+        reqH: parseFloat(heightInput.value),
+        actualW: currentCalculation.actualW,
+        actualH: currentCalculation.actualH,
+        area: currentCalculation.actualArea,
+        cost: currentCalculation.totalCost,
+        screenCost: currentCalculation.screenCost,
+        pixels: `${currentCalculation.wPixels}x${currentCalculation.hPixels}`,
+        totalPixels: currentCalculation.totalPixels,
+        units: `${currentCalculation.cols}x${currentCalculation.rows} (${currentCalculation.totalUnits})`,
+        ctrlName: currentCalculation.ctrlName,
+        ctrlPorts: currentCalculation.ctrlPorts,
+        remPorts: currentCalculation.remainingPorts,
+        remPixels: currentCalculation.remainingPixels,
+        ctrlBuyCost: currentCalculation.ctrlBuyPrice,
+        ctrlCost: currentCalculation.ctrlSalePrice,
+        power: currentCalculation.powerSupplies
+      };
+  
+      if (editingIndex > -1) {  
+        cart[editingIndex] = newItem;  
+        showToast('تم تحديث المخطط بنجاح');  
+        resetEditMode();  
+      } else {  
+        cart.push(newItem);  
+        showToast('تم إعتماد المخطط للطلب');  
+      }  
+  
+      saveCart();  
+      renderCart();  
+      widthInput.value = ''; heightInput.value = ''; calcUpdate();  
+    }  
+  
+    function editCartItem(index) {  
+      const item = cart[index];  
+      const product = [...indoorProducts, ...outdoorProducts].find(p => p.name === item.name);  
+      if (product) {  
+        const card = document.querySelector(`.product-card[data-id="${product.id}"]`);  
+        if (card) selectProduct(product, card);  
+      }  
+  
+      widthInput.value = item.reqW;  
+      heightInput.value = item.reqH;  
+      calcUpdate();  
+        
+      editingIndex = index;  
+        
+      const btn = document.getElementById('add-to-cart-btn');  
+      btn.innerHTML = `<i data-lucide="save" class="w-5 h-5"></i> حفظ التعديلات`;  
+      btn.classList.replace('bg-white', 'bg-brand-500');  
+      btn.classList.replace('text-brand-900', 'text-white');  
+        
+      lucide.createIcons();  
+      document.getElementById('calculator-section').scrollIntoView({ behavior: 'smooth', block: 'center' });  
+      renderCart();  
+    }  
+  
+    function resetEditMode() {  
+      editingIndex = -1;  
+      const btn = document.getElementById('add-to-cart-btn');  
+      btn.innerHTML = `<i data-lucide="plus-circle" class="w-5 h-5"></i> إعتماد التصميم وإضافته للطلب`;  
+      btn.classList.replace('bg-brand-500', 'bg-white');  
+      btn.classList.replace('text-white', 'text-brand-900');  
+        
+      selectedProduct = null;  
+      document.querySelectorAll('.product-card').forEach(card => {  
+        card.classList.remove('led-glow-active');  
+        const iconContainer = card.querySelector('.check-icon');  
+        iconContainer.classList.remove('bg-brand-500', 'text-white');  
+        iconContainer.classList.add('bg-slate-50', 'text-slate-400');  
+        iconContainer.innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i>';  
+      });  
+      document.getElementById('selected-product-name').textContent = 'الرجاء اختيار نوع الشاشة أولاً من الأعلى';  
+      document.getElementById('calc-info-box').classList.remove('bg-brand-50', 'border-brand-200');  
+      document.getElementById('calc-info-icon').classList.replace('text-brand-600', 'text-brand-500');  
+        
+      lucide.createIcons();  
+      renderCart();  
+    }  
+  
+    function removeCartItem(index) {  
+      cart.splice(index, 1);  
+      if (editingIndex === index) { resetEditMode(); widthInput.value = ''; heightInput.value = ''; calcUpdate(); }   
+      else if (editingIndex > index) { editingIndex--; }  
+      saveCart(); renderCart(); showToast('تم مسح المخطط');  
+    }  
+  
+    function renderCart() {  
+      const itemsContainer = document.getElementById('cart-items');  
+      const emptyState = document.getElementById('cart-empty');  
+      document.getElementById('cart-badge').textContent = `${cart.length} مخططات`;  
+        
+      if (cart.length === 0) {  
+        emptyState.classList.remove('hidden'); emptyState.classList.add('flex');  
+        itemsContainer.classList.add('hidden');  
+        document.getElementById('cart-total-area').textContent = '0';  
+        document.getElementById('cart-total-price').textContent = '0';  
+        return;  
+      }  
+        
+      emptyState.classList.add('hidden'); emptyState.classList.remove('flex');  
+      itemsContainer.classList.remove('hidden');  
+      itemsContainer.innerHTML = '';  
+        
+      let totalArea = 0, totalPrice = 0;  
+        
+      cart.forEach((item, index) => {  
+        totalArea += item.area; totalPrice += item.cost;  
+        const isEditing = editingIndex === index;  
+        const bgClass = isEditing ? 'bg-blue-50 border-blue-200 shadow-inner' : 'bg-slate-50 border-slate-100 hover:border-slate-300';  
+        const titleClass = isEditing ? 'text-blue-800' : 'text-slate-800';  
+          
+        itemsContainer.innerHTML += `  
+          <div class="${bgClass} rounded-2xl p-4 border flex flex-col gap-3 transition-all duration-300 relative overflow-hidden">  
+            ${isEditing ? '<div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>' : ''}  
+            <div class="flex justify-between items-start">  
+              <div class="flex-1">  
+                <h4 class="font-bold ${titleClass} text-sm mb-3 flex items-center gap-2">  
+                  ${isEditing ? '<span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span></span>' : ''}  
+                  ${item.name}  
+                </h4>  
+                
+                <!-- تفاصيل الشاشة -->
+                <div class="bg-white rounded-xl p-3 border border-slate-100 mb-2 shadow-sm">
+                  <div class="flex items-center gap-2 mb-2">
+                    <i data-lucide="monitor" class="w-3.5 h-3.5 text-slate-400"></i>
+                    <span class="text-[11px] font-bold text-slate-500">تفاصيل الشاشة</span>
+                  </div>
+                  <div class="grid grid-cols-2 gap-y-2 gap-x-2 text-xs text-slate-600">  
+                    <div><span class="text-slate-400">الفعلي:</span> ${item.actualW}×${item.actualH} م</div>  
+                    <div><span class="text-slate-400">المساحة:</span> ${item.area} م²</div>  
+                    <div dir="ltr" class="text-right"><span class="text-slate-400">Res:</span> ${item.pixels}</div>  
+                    <div><span class="text-slate-400">${item.unitName}ات:</span> ${item.units}</div>  
+                    <div class="col-span-2 pt-1 border-t border-slate-50 mt-1 flex justify-between">
+                       <span class="text-slate-400">سعر الشاشة:</span>
+                       <span class="font-bold text-slate-800">${item.screenCost.toLocaleString()} ر.س</span>
+                    </div>
+                  </div>  
+                </div>
+
+                <!-- تفاصيل المعالج -->
+                <div class="bg-blue-50/50 rounded-xl p-3 border border-blue-100 shadow-sm">
+                  <div class="flex items-center gap-2 mb-2">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-blue-400"></i>
+                    <span class="text-[11px] font-bold text-blue-600">تفاصيل المعالج والتشغيل</span>
+                  </div>
+                  <div class="grid grid-cols-2 gap-y-2 gap-x-2 text-xs text-slate-600">  
+                    <div class="col-span-2"><span class="text-slate-400">الموديل:</span> <span class="font-bold text-slate-700">${item.ctrlName}</span></div>  
+                    <div><span class="text-slate-400">منافذ:</span> ${item.ctrlPorts} (متبقي: <span class="font-bold text-brand-500">${item.remPorts}</span>)</div>  
+                    <div><span class="text-slate-400">باور:</span> ${item.power} مزود</div>  
+                    <div class="col-span-2 text-left" dir="ltr"><span class="text-slate-400">السعة المتبقية:</span> ${item.remPixels.toLocaleString()} px</div>  
+                    <div class="col-span-2 pt-1 border-t border-blue-100/50 mt-1 flex justify-between">
+                       <span class="text-slate-400">سعر المعالج:</span>
+                       <span class="font-bold text-blue-700">${item.ctrlCost.toLocaleString()} ر.س</span>
+                    </div>
+                  </div>  
+                </div>
+
+              </div>  
+              <div class="flex flex-col gap-2 mr-2">  
+                <button onclick="editCartItem(${index})" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-blue-500 hover:bg-blue-50 flex items-center justify-center transition-colors shadow-sm"><i data-lucide="pencil" class="w-3 h-3"></i></button>  
+                <button onclick="removeCartItem(${index})" class="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-red-500 hover:bg-red-50 flex items-center justify-center transition-colors shadow-sm"><i data-lucide="trash-2" class="w-3 h-3"></i></button>  
+              </div>  
+            </div>  
+            <div class="flex justify-between items-center pt-3 border-t border-slate-200/60 mt-1">
+               <div class="text-xs font-bold text-slate-800">الإجمالي الشامل (للشاشة + المعالج)</div>
+               <div class="text-brand-600 font-black text-base">${item.cost.toLocaleString()} ر.س</div>
+            </div>
+          </div>  
+        `;  
+      });  
+      document.getElementById('cart-total-area').textContent = totalArea.toFixed(2);  
+      document.getElementById('cart-total-price').textContent = totalPrice.toLocaleString();  
+      lucide.createIcons();  
+    }  
+  
+    function sendWhatsApp() {
+      if (cart.length === 0) return showToast('السلة فارغة!', 'error');
+
+      const dateStr = new Date().toLocaleDateString('ar-SA');
+      let msg = '📋 *مخطط تنفيذي لشاشات LED*\n';
+      msg += `📅 *التاريخ:* ${dateStr}\n`;
+      msg += 'ـــــــــــــــــــــــــــــــــــــــــــــــــ\n\n';
+
+      let ta = 0, tp = 0;
+      cart.forEach((i, idx) => {
+        msg += `🖥️ *الشاشة ${idx + 1}:* ${i.name}\n`;
+        
+        msg += `\n*--- تفاصيل الشاشة ---*\n`;
+        msg += `📐 المقاس المطلوب: ${i.reqW}م × ${i.reqH}م\n`;
+        msg += `✅ المقاس الفعلي: ${i.actualW}م × ${i.actualH}م\n`;
+        msg += `📏 المساحة: ${i.area} م²\n`;
+        msg += `🧩 عدد الـ(${i.unitName}): ${i.units}\n`;
+        msg += `🔲 الدقة الفعلية: ${i.pixels} (${i.totalPixels.toLocaleString()} بكسل)\n`;
+        msg += `🔌 مزودات الطاقة (Power): ${i.power} تقريباً\n`;
+        msg += `💵 سعر الشاشة فقط: ${i.screenCost.toLocaleString()} ريال\n`;
+        
+        msg += `\n*--- تفاصيل المعالج (Controller) ---*\n`;
+        msg += `💻 الموديل: ${i.ctrlName}\n`;
+        msg += `🔌 منافذ RJ45 الإجمالية: ${i.ctrlPorts}\n`;
+        msg += `✅ المنافذ المتبقية: ${i.remPorts}\n`;
+        msg += `🔋 السعة المتبقية: ${i.remPixels.toLocaleString()} بكسل\n`;
+        msg += `📉 سعر الشراء (للعلم): ${i.ctrlBuyCost.toLocaleString()} ريال\n`;
+        msg += `💰 سعر البيع للمعالج: ${i.ctrlCost.toLocaleString()} ريال\n`;
+        
+        msg += `\n💳 *التكلفة الشاملة للقسم:* ${i.cost.toLocaleString()} ريال\n`;
+        msg += `ـــــــــــــــــــــــــــــــــــــــــــــــــ\n\n`;
+        ta += i.area; tp += i.cost;
+      });
+      msg += `📊 *إجمالي المساحة:* ${ta.toFixed(2)} م²\n💳 *الإجمالي النهائي للمشروع:* ${tp.toLocaleString()} ريال\n`;
+
+      window.open(`https://wa.me/966568397048?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  
+    renderProducts(indoorProducts, 'indoor-buttons');  
+    renderProducts(outdoorProducts, 'outdoor-buttons');  
+    loadCart();  
+  </script>  
+</body>  
+</html>
