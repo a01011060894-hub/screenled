@@ -1,3 +1,4 @@
+```html
 <!doctype html>  
 <html lang="ar" dir="rtl">  
 <head>  
@@ -16,9 +17,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">  
     
-  <!-- Swiper.js CSS -->  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />  
-  
   <script>  
     tailwind.config = {  
       theme: {  
@@ -51,12 +49,6 @@
   
     input[type="number"]::-webkit-inner-spin-button,   
     input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }  
-  
-    .swiper-button-next, .swiper-button-prev { color: white !important; background: rgba(0,0,0,0.4); width: 44px !important; height: 44px !important; border-radius: 50%; backdrop-filter: blur(4px); transition: all 0.3s; }  
-    .swiper-button-next:hover, .swiper-button-prev:hover { background: rgba(34, 197, 94, 0.9); transform: scale(1.1); }  
-    .swiper-button-next::after, .swiper-button-prev::after { font-size: 18px !important; font-weight: bold; }  
-    .swiper-pagination-bullet { background: white !important; opacity: 0.5; }  
-    .swiper-pagination-bullet-active { opacity: 1; background: #22c55e !important; width: 24px; border-radius: 4px; transition: width 0.3s ease; }  
   </style>  
 </head>  
 <body class="text-slate-800 antialiased selection:bg-brand-500 selection:text-white">  
@@ -71,7 +63,7 @@
       <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/80 to-transparent"></div>  
     </div>  
   
-    <div class="relative z-10 text-center px-6 max-w-4xl animate-fade-in-up">  
+    <div class="relative z-10 text-center px-6 max-w-5xl animate-fade-in-up">  
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-100 text-sm font-medium mb-6">  
         <i data-lucide="cpu" class="w-4 h-4"></i>  
         <span>أول نظام تخطيط هندسي مؤتمت</span>  
@@ -79,17 +71,21 @@
       <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 drop-shadow-lg">  
         تصميم <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-teal-300">بلا أخطاء</span>  
       </h1>  
-      <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">  
+      <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto font-light leading-relaxed">  
         أدخل أبعاد المساحة المتاحة لديك، وسيقوم نظامنا الهندسي بتقريبها للمقاس الفعلي، واختيار أجهزة التشغيل، وحساب عدد المكونات بدقة متناهية.  
       </p>  
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">  
-        <a href="#indoor-section" class="px-8 py-4 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-lg transition-all shadow-[0_0_20px_rgba(34,197,94,0.4)] flex items-center gap-2">  
+      <div class="flex flex-wrap items-center justify-center gap-4">  
+        <a href="#indoor-section" class="px-6 py-3.5 rounded-2xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-base md:text-lg transition-all shadow-[0_0_20px_rgba(34,197,94,0.4)] flex items-center gap-2">  
           <i data-lucide="monitor-play" class="w-5 h-5"></i>  
-          تصفح الشاشات الداخلية  
+          الشاشات الداخلية  
         </a>  
-        <a href="#outdoor-section" class="px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold text-lg transition-all flex items-center gap-2">  
+        <a href="#outdoor-section" class="px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold text-base md:text-lg transition-all flex items-center gap-2">  
           <i data-lucide="sun" class="w-5 h-5"></i>  
-          تصفح الشاشات الخارجية  
+          الشاشات الخارجية  
+        </a>  
+        <a href="https://drive.google.com/drive/folders/15xx0qgXYeNZk_iv7L_NLLD7CCwo9Cv6J" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-base md:text-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] flex items-center gap-2">  
+          <i data-lucide="folder-open" class="w-5 h-5"></i>  
+          معرض أعمالنا  
         </a>  
       </div>  
     </div>  
@@ -108,7 +104,7 @@
           <p class="text-slate-500 mt-1">دقة عرض مثالية للمسافات القريبة.</p>  
         </div>  
       </div>  
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="indoor-buttons"></div>  
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="indoor-buttons"></div>  
     </section>  
   
     <!-- Outdoor Section -->  
@@ -122,7 +118,7 @@
           <p class="text-slate-500 mt-1">مقاومة للعوامل الجوية مع سطوع عالٍ يبرز في النهار.</p>  
         </div>  
       </div>  
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="outdoor-buttons"></div>  
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="outdoor-buttons"></div>  
     </section>  
   
     <!-- Engineering Configurator Section -->  
@@ -169,7 +165,7 @@
           </div>  
         </div>  
   
-        <!-- System Alerts (If requested size is too small) -->  
+        <!-- System Alerts -->  
         <div id="calc-warning" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm mb-6 flex items-center gap-2">  
           <i data-lucide="alert-triangle" class="w-4 h-4"></i>  
           <span id="calc-warning-text">المقاس المدخل أصغر من وحدة واحدة، يرجى زيادة المقاس.</span>  
@@ -240,13 +236,11 @@
 
           <!-- Deep Engineering Data Grid -->
           <div class="relative z-10 grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
-            <!-- Pixels -->
             <div class="bg-black/20 rounded-xl p-3 text-center">
               <i data-lucide="scan" class="w-4 h-4 text-brand-300 mx-auto mb-1"></i>
               <p class="text-[10px] text-brand-200 mb-0.5">الدقة الفعلية</p>
               <p id="calc-pixels" class="font-bold text-sm tracking-wider" dir="ltr">0 × 0</p>
             </div>
-            <!-- Units -->
             <div class="bg-black/20 rounded-xl p-3 text-center">
               <i data-lucide="layout-grid" class="w-4 h-4 text-blue-300 mx-auto mb-1"></i>
               <p class="text-[10px] text-brand-200 mb-0.5" id="unit-label">عدد الوحدات</p>
@@ -303,8 +297,14 @@
   </main>  
   
   <!-- Footer -->  
-  <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm border-t border-slate-800">  
-    <p>© 2024 متجر شاشات LED - الأفق الجديد. جميع الحقوق محفوظة.</p>  
+  <footer class="bg-slate-900 text-slate-400 py-10 text-center text-sm border-t border-slate-800">  
+    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center gap-4">
+      <a href="https://drive.google.com/drive/folders/15xx0qgXYeNZk_iv7L_NLLD7CCwo9Cv6J" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors">
+        <i data-lucide="image" class="w-4 h-4 text-slate-300"></i>
+        <span class="font-medium text-slate-300">تصفح معرض سابقة أعمالنا</span>
+      </a>
+      <p>© 2024 متجر شاشات LED - الأفق الجديد. جميع الحقوق محفوظة.</p>  
+    </div>
   </footer>  
   
   <script>  
@@ -322,8 +322,7 @@
       { name: "A800", ports: 16, maxPixels: 8800000, maxWidth: 8192, maxHeight: 4320, buyPrice: 6500, salePrice: 9750 }
     ];
   
-    // Products Data with Exact Dimensions and Step (Rounding multiples)  
-    // وحدة القياس: المتر. stepW = العرض, stepH = الارتفاع  
+    // Products Data
     const indoorProducts = [  
       { id: 'in1', name: 'P2.5 Indoor SMD', pitch: 2.50, price: 3035, originalPrice: 3500, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'اقتصادي وعملي، ممتاز للقاعات والمتاجر الكبيرة.' },  
       { id: 'in2', name: 'P1.8 Indoor SMD', pitch: 1.86, price: 3674, originalPrice: 4200, stepW: 0.32, stepH: 0.16, unitName: 'موديول', hint: 'دقة عالية، مثالي لغرف الاجتماعات ورؤية واضحة عن قرب.' },  
@@ -346,7 +345,7 @@
     let cart = [];  
     let selectedProduct = null;  
     let editingIndex = -1;  
-    let currentCalculation = null; // Holds all engineered specs  
+    let currentCalculation = null;  
   
     function loadCart() {  
       const savedCart = localStorage.getItem('ledStoreCart');  
@@ -452,7 +451,6 @@
     }  
   
     function engineeringCalculator(reqW, reqH, product) {
-      // 1. حساب المقاس الفعلي بتقريب للأسفل (Floor) بناءً على مقاس الكابينة
       const cols = Math.floor(reqW / product.stepW);
       const rows = Math.floor(reqH / product.stepH);
 
@@ -463,17 +461,15 @@
 
       if (cols === 0 || rows === 0) return { isValid: false };
 
-      // 2. حساب عدد البكسلات الفعلي بدقة علمية: المقاس بالمتر × (1000 ÷ Pitch)
       const wPixels = Math.round(actualW * (1000 / product.pitch));
       const hPixels = Math.round(actualH * (1000 / product.pitch));
       const totalPixels = wPixels * hPixels;
 
-      // 3. خوارزمية اختيار المعالج بناءً على الشروط الثلاثة
       let recommendedController = null;
       for (let ctrl of controllers) {
         if (wPixels <= ctrl.maxWidth && hPixels <= ctrl.maxHeight && totalPixels <= ctrl.maxPixels) {
           recommendedController = ctrl;
-          break; // نختار أول/أصغر جهاز يحقق جميع الشروط
+          break;
         }
       }
 
@@ -490,7 +486,6 @@
           ctrlBuyPrice = recommendedController.buyPrice;
           ctrlSalePrice = recommendedController.salePrice;
           remainingPixels = recommendedController.maxPixels - totalPixels;
-          // حساب المنافذ المستخدمة: منفذ لكل 650 ألف بكسل
           let usedPorts = Math.ceil(totalPixels / 650000); 
           remainingPorts = ctrlPorts - usedPorts;
           if (remainingPorts < 0) remainingPorts = 0;
@@ -498,12 +493,11 @@
 
       const totalCost = screenCost + ctrlSalePrice;
 
-      // 4. الحسابات التكميلية (كابلات / باور) تقريبياً للفائدة
       let powerSupplies = 0;
       if (product.unitName === 'موديول') {
-         powerSupplies = Math.ceil((cols * rows) / 4); // نفترض باور لكل 4 موديولات
+         powerSupplies = Math.ceil((cols * rows) / 4);
       } else {
-         powerSupplies = Math.ceil((cols * rows) * 2); // نفترض 2 باور داخل كل كابينة
+         powerSupplies = Math.ceil((cols * rows) * 2);
       }
 
       return {
@@ -535,7 +529,6 @@
     function calcUpdate() {
       const w = parseFloat(widthInput.value) || 0;
       const h = parseFloat(heightInput.value) || 0;
-
       const warningEl = document.getElementById('calc-warning');
 
       if (selectedProduct && w > 0 && h > 0) {
@@ -804,3 +797,6 @@
   </script>  
 </body>  
 </html>
+
+
+```
